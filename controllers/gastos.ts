@@ -31,14 +31,3 @@ export const getGastosById = async (req: Request, res: Response) => {
     const gastosData:IGastos|null = await Gastos.findById(_id).populate("user");
     res.json(gastosData);
 }
-
-export const getGastosByDni = async (req: Request, res: Response) => {
-  const _id = req.params.userId;
-  try {
-    const gastos = await Gastos.find({ "user._id": _id });
-    console.log(gastos)
-    res.json(gastos); 
-  } catch (error) {
-    res.status(500).json({ message: "Error al obtener los gastos", error });
-  }
-};
